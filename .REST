@@ -1,0 +1,135 @@
+### Obtener artistas
+
+GET http://localhost:3000/artistas HTTP/1.1
+
+### Obtener un artista por id
+
+GET http://localhost:3000/artistas/3 HTTP/1.1
+
+### Crear un artista
+
+POST http://localhost:3000/artistas HTTP/1.1
+Content-Type: application/json
+
+{
+  "nombre": "Bege y los gandel"
+}
+
+### Actualizar un artista
+
+PUT http://localhost:3000/artistas/3 HTTP/1.1
+Content-Type: application/json
+
+{
+  "nombre": "Aiekas"
+}
+
+### Eliminar un artista
+
+DELETE http://localhost:3000/artistas/8 HTTP/1.1
+
+### Obtener albumes
+
+GET http://localhost:3000/albumes HTTP/1.1
+
+### Obtener un album por id
+
+GET http://localhost:3000/albumes/1 HTTP/1.1
+
+### Crear un album
+
+POST http://localhost:3000/albumes HTTP/1.1
+Content-Type: application/json
+
+{
+  "nombre": "Aiekas",
+  "artista": 7
+}
+
+### Actualizar un album
+
+PUT http://localhost:3000/albumes/10 HTTP/1.1
+Content-Type: application/json
+
+{
+  "nombre": "Megma",
+  "artista": 6
+}
+
+### Eliminar un album
+
+DELETE http://localhost:3000/albumes/10 HTTP/1.1
+
+### Obtener canciones
+
+GET http://localhost:3000/canciones HTTP/1.1
+
+### Obtener una cancion por id
+
+GET http://localhost:3000/canciones/1 HTTP/1.1
+
+### Crear una cancion
+
+POST http://localhost:3000/canciones HTTP/1.1
+Content-Type: application/json
+
+{
+  "nombre": "Cancion 3",
+  "album": 1,
+  "duracion": 260
+}
+
+### Actualizar una cancion
+
+PUT http://localhost:3000/canciones/11 HTTP/1.1
+Content-Type: application/json
+
+{
+  "nombre": "Cancion 2",
+  "album": 1,
+  "duracion": 260
+}
+
+### Eliminar una cancion
+
+DELETE http://localhost:3000/canciones/11 HTTP/1.1
+
+### Reproducir una cancion
+
+PUT http://localhost:3000/canciones/10/reproducir HTTP/1.1
+### Obtener canciones de un album
+
+GET http://localhost:3000/albumes/3/canciones HTTP/1.1
+
+### Obtener canciones de un artista
+
+GET http://localhost:3000/artistas/4/canciones HTTP/1.1
+
+### Obtener albumes de un artista
+
+GET http://localhost:3000/artistas/4/albumes HTTP/1.1
+
+
+### Añadir canción a playlist
+
+POST http://localhost:3000/playlist HTTP/1.1
+Content-Type: application/json
+
+{
+  "playlist_id": 2,
+  "cancion_id": 4
+}
+
+### Eliminar canción de playlist
+
+DELETE http://localhost:3000/playlist HTTP/1.1
+Content-Type: application/json
+
+{
+  "playlist_id": 1,
+  "cancion_id": 3
+}
+
+### Obtener playlist
+
+GET http://localhost:3000/playlist/2 HTTP/1.1
