@@ -1,6 +1,6 @@
 import { query } from "../db.js";
 
-async function add_cancion(req, res) {t
+async function add_cancion(req, res) {
     try {
         const result = await query("INSERT INTO playlist (playlist_id, cancion_id) VALUES ($1, $2) RETURNING *", [
             req.body.playlistId,
