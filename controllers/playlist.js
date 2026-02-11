@@ -1,17 +1,19 @@
 import { query } from "../db.js";
 
 async function add_cancion(req, res) {
-    try {
-        const result = await query("INSERT INTO playlist (playlist_id, cancion_id) VALUES ($1, $2) RETURNING *", [
-            req.body.playlistId,
-            req.body.cancionId,
-        ]);
-        res.status(201).json(result.rows[0]);
-    } catch (error) {
-        console.error("Error adding song to playlist:", error);
-        res.status(500).json({ error: "Internal Server Error" });
-    }
+  try {
+    const result = await query(
+      "INSERT INTO playlist (cancion_id) VALUES ($1) RETURNING *",
+      [req.body.cancion_id]
+    );
+
+    res.status(201).json(result.rows[0]);
+  } catch (error) {
+    console.error("Error adding song to playlist:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 }
+
 
 async function delete_cancion(req, res) {
     try {
