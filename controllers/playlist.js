@@ -3,8 +3,8 @@ import { query } from "../db.js";
 async function add_cancion(req, res) {
   try {
     const result = await query(
-      "INSERT INTO playlist (cancion_id) VALUES ($1) RETURNING *",
-      [req.body.cancion_id]
+      "INSERT INTO playlists (playlist_id, cancion_id) VALUES ($1, $2) RETURNING *",
+      [req.body.playlist_id, req.body.cancion_id]
     );
 
     res.status(201).json(result.rows[0]);
@@ -17,9 +17,9 @@ async function add_cancion(req, res) {
 
 async function delete_cancion(req, res) {
     try {
-        const result = await query("DELETE FROM playlist WHERE playlist_id = $1 AND cancion_id = $2 RETURNING *", [
-            req.body.playlistId,
-            req.body.cancionId,
+        const result = await query("DELETE FROM playlists WHERE playlist_id = $1 AND cancion_id = $2 RETURNING *", [
+            req.body.playlist_id,
+            req.body.cancion_id,
         ]);
 
         if (result.rows.length === 0) {
@@ -36,7 +36,7 @@ async function delete_cancion(req, res) {
 async function get_playlist(req, res) {
     try {
         const result = await query(
-            "SELECT canciones.id, canciones.nombre, canciones.duracion, canciones.reproducciones FROM playlist JOIN canciones ON playlist.cancion_id = canciones.id WHERE playlist.playlist_id = $1",
+            "SELECT canciones.id, canciones.nombre, canciones.duracion, canciones.reproducciones FROM playlists JOIN canciones ON playlists.cancion_id = canciones.id WHERE playlists.playlist_id = $1",
             [req.params.playlistId]
         );
         res.json(result.rows);
